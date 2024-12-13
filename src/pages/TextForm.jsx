@@ -43,6 +43,7 @@ const TextForm = (props) => {
     var text=document.getElementById('myBox');
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert('Text Copied!!','success');
   }
 
@@ -63,9 +64,9 @@ const TextForm = (props) => {
 
   return (
     <>
-      <div className={`container my-2 ${props.mode === 'light' ? 'text-dark' : 'text-white'}`}>
+      <div className={`container my-4 ${props.mode === 'light' ? 'text-dark' : 'text-white'}`}>
         <div className="form-group">
-          <h3 className="mt-5 mb-3">{props.heading}</h3>
+          <h3 className="mb-3">{props.heading}</h3>
           <textarea className="form-control mb-4" 
             style={{backgroundColor:props.mode==='light'?'white':'#31343A', 
               color:props.mode==='light'?'black':'white',

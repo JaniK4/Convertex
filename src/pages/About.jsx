@@ -1,27 +1,32 @@
-import  { useState } from 'react';
 
-const About = () => {
-  const [darkMode, setDarkMode] = useState(false);
+import PropTypes from 'prop-types';
+const About = (props) => {
+  // const [darkMode, setDarkMode] = useState(false);
 
-  const toggleMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // const toggleMode = () => {
+  //   setDarkMode(!darkMode);
+  // };
 
-  const accordionStyle = {
-    backgroundColor: darkMode ? '#343a40' : '#f8f9fa',
-    color: darkMode ? 'white' : 'black',
-    borderRadius: '5px',
-  };
+  // const accordionStyle = {
+  //   backgroundColor: darkMode ? '#343a40' : '#f8f9fa',
+  //   color: darkMode ? 'white' : 'black',
+  //   borderRadius: '5px',
+  // };
+  let accordionStyle ={
+    color: props.mode==='dark'?'white':'black',
+    backgroundColor: props.mode==='dark'?'#343a40' : '#f8f9fa',
+    borderRadius: '8px',
+  }
 
   return (
     <>
-      <div className="container my-4" style={accordionStyle}>
+      <div className="container my-5 pb-5" style={accordionStyle}>
         <h3 className="mb-3 pt-3 text-center">About Us</h3>
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
               <button
-                className="accordion-button"
+                className="accordion-button font-weight-bold"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
@@ -29,7 +34,7 @@ const About = () => {
                 aria-controls="collapseOne"
                 style={accordionStyle}
               >
-                Accordion Item #1
+                What is Covertex?
               </button>
             </h2>
             <div
@@ -38,19 +43,15 @@ const About = () => {
               aria-labelledby="headingOne"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body" style={accordionStyle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
+              <div className="accordion-body p-5" style={accordionStyle}>
+                Covertex is a cutting-edge platform offering innovative solutions for all your textile needs, 
+                from sourcing to production. Whether you&apos;re a designer or a manufacturer, Covertex provides you 
+                with the tools and resources to streamline your process
               </div>
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className="accordion-item font-weight-bold">
             <h2 className="accordion-header" id="headingTwo">
               <button
                 className="accordion-button collapsed"
@@ -61,7 +62,7 @@ const About = () => {
                 aria-controls="collapseTwo"
                 style={accordionStyle}
               >
-                Accordion Item #2
+                 Our Services
               </button>
             </h2>
             <div
@@ -70,29 +71,56 @@ const About = () => {
               aria-labelledby="headingTwo"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body" style={accordionStyle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
+              <div className="accordion-body p-5" style={accordionStyle}>
+              We offer a range of services including bespoke textile designs, on-demand manufacturing, and 
+              high-quality material sourcing. Whether you need small runs or large-scale production, Covertex 
+              ensures top-notch service and quality.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item font-weight-bold">
+            <h2 className="accordion-header" id="headingTwo">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+                style={accordionStyle}
+              >
+                Why Choose Us?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              className="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="accordion-body p-5" style={accordionStyle}>
+              Covertex stands out for its commitment to quality, sustainability, and innovation. We use 
+              state-of-the-art technology and eco-friendly materials to help you create high-quality products 
+              while minimizing environmental impact.
               </div>
             </div>
           </div>
         </div>
-        <div className="text-center mt-4 pb-4">
+        {/* <div className="text-center mt-4 pb-4">
           <button
             className="btn btn-primary"
             onClick={toggleMode}
           >
             Toggle to {darkMode ? 'Light' : 'Dark'} Mode
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );
+};
+
+About.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 export default About;

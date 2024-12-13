@@ -7,11 +7,14 @@ const Alerts = (props) => {
 
   if (show) {
     return (
-      props.alert && <Alert variant="success" onClose={() => setShow(false)} >
-        <Alert.Heading className="h6">
-            <strong>{props.alert.type}</strong>: {props.alert.msg}
-          </Alert.Heading>
-      </Alert>
+      <div style={{height:'40px'}} >
+        {props.alert && 
+        <Alert variant="success" onClose={() => setShow(false)} >
+          <Alert.Heading className="h6">
+              <strong>{props.alert.type}</strong>: {props.alert.msg}
+            </Alert.Heading>
+        </Alert>}
+      </div>
     );
   }
 };
