@@ -41,7 +41,7 @@ function App() {
       <Alert alert={alert}/>
       <TextForm showAlert={showAlert} heading="Enter Text To Analyze Below" mode={mode} />
       <About /> */}
-      <BrowserRouter basename="/Convertex">
+      <BrowserRouter >
         <Navbar mode={mode} toggleMode={toggleMode} />
           <Alert alert={alert} />
         
