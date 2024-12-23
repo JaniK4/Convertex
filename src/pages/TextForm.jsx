@@ -22,22 +22,44 @@ const TextForm = (props) => {
   }
 
   const speak = () => {
+    // Check if text is empty
     if (!text.trim()) {
-      alert("Please Enter Some Text To Speak.");
+      alert("Please enter some text to speak.");
       return;
     }
-
+  
     // Stop any ongoing speech
     if (window.speechSynthesis.speaking) {
+      console.log("Speech synthesis is already in progress. Canceling the current speech...");
       window.speechSynthesis.cancel();
     }
-
-    const msg = new SpeechSynthesisUtterance(text);
-    msg.rate = 1; // Adjust rate (speed) if needed, 1 is normal speed
-    msg.pitch = 1; // Adjust pitch if needed, 1 is normal pitch
-    window.speechSynthesis.speak(msg);
-    props.showAlert('Your Text Has Been Successfully Spoken!','success');
+  
+    try {
+      const msg = new SpeechSynthesisUtterance(text);
+  
+      // Handle speech completion and potential errors
+      msg.onend = () => {
+        console.log("Speech has finished successfully.");
+        props.showAlert("Your text has been successfully spoken!", "success");
+      };
+  
+      msg.onerror = (e) => {
+        console.error("An error occurred during speech synthesis:", e);
+        props.showAlert("An error occurred while trying to speak the text.", "danger");
+      };
+  
+      // Adjust rate and pitch (customizable)
+      msg.rate = 1; // Normal speed
+      msg.pitch = 1; // Normal pitch
+  
+      // Speak the text
+      window.speechSynthesis.speak(msg);
+    } catch (error) {
+      console.error("Speech synthesis is not supported or failed:", error);
+      alert("Speech synthesis is not supported in your browser.");
+    }
   };
+  
 
   const HandleCopy =()=>{
     var text=document.getElementById('myBox');
